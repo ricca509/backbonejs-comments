@@ -146,7 +146,7 @@ app.AppView = Backbone.View.extend({
 });
 
 app.init = function() {
-	// Creo collezione
+	// Create the collection
 	app.comments = new app.Comments();
 
 	app.commentsCountView = new app.CommentsCountView({
