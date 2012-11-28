@@ -94,6 +94,10 @@ app.CommentView = Backbone.View.extend({
 
 	template: _.template($('#comment-tmpl').html()),
 
+	initialize: function() {
+		this.model.on('change', this.render, this);
+	},
+
 	render: function() {
 		var that = this;				
 
@@ -109,15 +113,11 @@ app.CommentView = Backbone.View.extend({
 	},
 
 	like: function() {	
-		this.model.addLike();
-
-		this.render();
+		this.model.addLike();		
 	},
 
 	dislike: function() {
-		this.model.addDislike();
-
-		this.render();
+		this.model.addDislike();		
 	},
 
 	remove: function() {
