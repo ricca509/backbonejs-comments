@@ -54,9 +54,15 @@ app.Comments = Backbone.Collection.extend({
 
 // Add comment view
 app.AddCommentView = Backbone.View.extend({
+	initialize: function() {
+		//setTimeout(this.initForm, 200);		
+	},
+
 	events : {
 		'click #btnAddComment': 'add',
-		'keypress #appendedInputButton': 'checkKey'
+		'keypress #appendedInputButton': 'checkKey',
+		'focusin #appendedInputButton': 'widenTextbox',
+		'focusout #appendedInputButton': 'narrowTextbox',
 	},
 
 	checkKey: function(ev) {
@@ -66,6 +72,23 @@ app.AddCommentView = Backbone.View.extend({
 	    }
 	},
 
+	widenTextbox: function() {
+		this.$('#appendedInputButton').animate({
+			'width': '90%'
+		});
+	},
+
+	narrowTextbox: function() {
+		this.$('#appendedInputButton').animate({
+			'width': '40%'
+		});
+	},
+
+	initForm: function() {
+		this.$('#appendedInputButton').val('');
+		this.$('#appendedInputButton').focus();
+	},
+
 	add : function() {
 		var comment = new app.Comment({
 			text: this.$('#appendedInputButton').val()			
@@ -73,9 +96,7 @@ app.AddCommentView = Backbone.View.extend({
 		
 		// Add to collection
 		this.collection.add(comment);
-
-		this.$('#appendedInputButton').val('');
-		this.$('#appendedInputButton').focus();
+		this.initForm();
 	}
 });
 
@@ -112,7 +133,7 @@ app.CommentView = Backbone.View.extend({
 		
 	},
 
-	like: function() {	
+	like: function() {	 
 		this.model.addLike();		
 	},
 
@@ -156,7 +177,7 @@ app.AppView = Backbone.View.extend({
 			model: comment
 		});
 
-		$('#commentsContainer').append(commentV.render().el);
+		$('#commentsContainer').append(commentV.render().$el.fadeIn('slow'));
 	}
 });
 
