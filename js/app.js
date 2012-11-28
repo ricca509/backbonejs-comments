@@ -8,14 +8,14 @@ app.ENTER = 13;
 app.Comment = Backbone.Model.extend({
 	initialize: function() {
 		this.on('add', this.addHandler, this);
-	},
-
-	urlRoot: '/comments',
+	},	
 
 	defaults: {
 		like: 0,
 		dislike: 0		
 	},
+
+	urlRoot: '/comments',
 
 	// I use this method to add
 	// dynamically generated values to the 
@@ -46,10 +46,7 @@ app.Comment = Backbone.Model.extend({
 
 // Comments collection
 app.Comments = Backbone.Collection.extend({
-	model: app.Comment,	
-
-	initialize: function() {	
-	}	
+	model: app.Comment	
 });
 
 // Add comment view
@@ -94,8 +91,10 @@ app.AddCommentView = Backbone.View.extend({
 			text: this.$('#appendedInputButton').val()			
 		});
 		
-		// Add to collection
-		this.collection.add(comment);
+		// Call the server and add to collection
+		// ATM there's no server implementation,
+		// this is only for demonstration
+		this.collection.create(comment);
 		this.initForm();
 	}
 });
