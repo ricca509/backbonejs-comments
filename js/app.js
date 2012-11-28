@@ -58,7 +58,7 @@ app.AddCommentView = Backbone.View.extend({
 		});
 		
 		// Add to collection
-		app.comments.add(comment);
+		this.collection.add(comment);
 
 		this.$('#appendedInputButton').val('');
 		this.$('#appendedInputButton').focus();
@@ -68,6 +68,7 @@ app.AddCommentView = Backbone.View.extend({
 // Comment View
 app.CommentView = Backbone.View.extend({
 	tagName: 'div',
+
 	className: 'comment',
 
 	events: {
@@ -153,7 +154,9 @@ app.init = function() {
 		collection: app.comments
 	});
 
-	app.addCommentView = new app.AddCommentView();
+	app.addCommentView = new app.AddCommentView({
+		collection: app.comments
+	});
 	app.addCommentView.setElement($('#add-comment'));
 
 	app.appView = new app.AppView({
