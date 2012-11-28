@@ -4,6 +4,7 @@
     <title>Backbone.js Comments</title>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
   </head>
   <body style="padding: 40px;">    
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -59,7 +60,7 @@
     </div>
 
     <script id="comment-tmpl" type="text/template">
-      <div class="media" style="padding: 10px 0;">
+      <div class="media">
         <button class="close">&times;</button>
         <a class="pull-left" href="#">
           <img class="media-object" src="http://placehold.it/64x64">
@@ -71,6 +72,7 @@
           <button class="btn-link like"><i class="icon-thumbs-up"></i></button> <span class="badge badge-success"><%= like %></span>
           <button class="btn-link dislike"><i class="icon-thumbs-down"></i></button> <span class="badge badge-important"><%= dislike %></span>
         </div>
+        <hr>
       </div>
     </script>
 
