@@ -23,17 +23,18 @@
                 <input class="span9" id="appendedInputButton" placeholder="Add a comment" type="text">
                 <button class="btn btn-success" id="btnAddComment" type="button">Add!</button>
               </div>
+              <span class="label label-info">Hint!</span>
+              Hit the enter key to add a comment!
             </div>
             <div id="commentsContainer" style="padding: 10px 0;">
-            </div>
-
+            </div>            
           </div>
           
         </div>
         <div class="span2">
           <!--Sidebar content-->
           <div class="well">
-              We have <h3 id="commentsCount"></h3> comments so far
+              We have <h3 id="commentsCount"></h3> comment/s so far
           </div>          
         </div>
       </div>
@@ -47,7 +48,7 @@
         </a>
         <div class="media-body">
           <h4 class="media-heading"><%= text %></h4>
-          <%= creationDate %>
+          on: <%= creationDate %>
           <br>          
           <button class="btn-link like"><i class="icon-thumbs-up"></i></button> <span class="badge badge-success"><%= like %></span>
           <button class="btn-link dislike"><i class="icon-thumbs-down"></i></button> <span class="badge badge-important"><%= dislike %></span>

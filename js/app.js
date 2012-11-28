@@ -2,13 +2,28 @@
 // Namespace
 var app = app || {};
 
+app.ENTER = 13;
+
 // Comment model
 app.Comment = Backbone.Model.extend({
+	initialize: function() {
+		this.on('add', this.addHandler, this);
+	},
+
 	urlRoot: '/comments',
 
 	defaults: {
 		like: 0,
-		dislike: 0
+		dislike: 0		
+	},
+
+	// I use this method to add
+	// dynamically generated values to the 
+	// newly added model
+	addHandler: function() {
+		this.set({
+			creationDate: new Date()
+		});
 	},
 
 	addLike: function() {
@@ -46,15 +61,14 @@ app.AddCommentView = Backbone.View.extend({
 
 	checkKey: function(ev) {
 		// Check if enter key pressed and add a comment
-		if (ev.keyCode === 13) {
+		if (ev.keyCode === app.ENTER) {
 			this.add();
 	    }
 	},
 
 	add : function() {
 		var comment = new app.Comment({
-			text: this.$('#appendedInputButton').val(),
-			creationDate: new Date()
+			text: this.$('#appendedInputButton').val()			
 		});
 		
 		// Add to collection
