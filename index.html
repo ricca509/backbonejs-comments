@@ -31,7 +31,7 @@
       <div class="row">        
         <div class="span10">
           <!--Body content-->
-          <h2>Post</h2>
+          <h2>Your interesting post</h2>
           <div id="content">            
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ante eros, cursus nec congue sit amet, sagittis nec erat. Phasellus euismod mi a sem cursus ut facilisis tellus blandit. Maecenas cursus scelerisque dignissim. Maecenas nec mi mauris, sed adipiscing erat. Ut vitae risus at augue mattis dictum vel sit amet nisl. Pellentesque suscipit, neque vel tempor congue, odio justo rhoncus sem, in dapibus nibh massa at augue. Cras pharetra iaculis sem nec semper. Fusce mollis augue blandit velit venenatis ac egestas orci ullamcorper. Etiam eget enim orci, in dapibus orci.
 
@@ -59,6 +59,10 @@
       </div>
     </div>
 
+    <!-- TEMPLATES declaration -->
+    <!-- We keep templates inline for the sake of simplicity -->
+
+    <!-- Comment template -->
     <script id="comment-tmpl" type="text/template">
       <div class="media">
         <button class="close">&times;</button>
@@ -76,17 +80,16 @@
       </div>
     </script>
 
+    <!-- Comment count template -->
     <script id="comments-count-tmpl" type="text/template">
       We have <h3><%= commentsCount %></h3> comment/s so far
     </script>
 
+    <!-- Javascript at the bottom -->
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore-min.js"></script>
     <script src="js/backbone-min.js"></script>
     <script src="js/app.js"></script>
-    <script>
-      
-    </script>
   </body>
 </html>

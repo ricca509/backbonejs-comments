@@ -10,7 +10,7 @@ var app = app || {};
 app.ENTER = 13;
 
 // Comment model
-// This model will hold data for
+// This model will hold data
 // and custom methods for a single comment
 app.Comment = Backbone.Model.extend({
 	initialize: function() {
@@ -242,7 +242,7 @@ app.AppView = Backbone.View.extend({
 			model: comment
 		});
 
-		$('#commentsContainer').append(commentV.render().$el.fadeIn('slow'));
+		$('#commentsContainer').prepend(commentV.render().$el.fadeIn('slow'));
 	}
 });
 
