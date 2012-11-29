@@ -6,7 +6,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
   </head>
-  <body style="padding: 40px;">    
+  <body>    
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -39,7 +39,7 @@
             <h3>Comments</h3>
             <div id="add-comment">
               <div class="input-append">
-                <input style="width: 40%" id="appendedInputButton" placeholder="Add a comment" type="text">
+                <input id="appendedInputButton" placeholder="Add a comment" type="text">
                 <button class="btn btn-success" id="btnAddComment" type="button">Add!</button>
               </div>
               <span class="label label-info">Hint!</span>
@@ -52,9 +52,7 @@
         </div>
         <div class="span2">
           <!--Sidebar content-->
-          <div class="well" style="margin-top: 10px;">
-              We have <h3 id="commentsCount"></h3> comment/s so far
-          </div>          
+          <div id="commentsCountCountainer"></div>            
         </div>
       </div>
     </div>
@@ -76,13 +74,17 @@
       </div>
     </script>
 
+    <script id="comments-count-tmpl" type="text/template">
+      We have <h3><%= commentsCount %></h3> comment/s so far
+    </script>
+
     <script src="js/jquery-1.8.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore-min.js"></script>
     <script src="js/backbone-min.js"></script>
     <script src="js/app.js"></script>
     <script>
-      app.init();
+      
     </script>
   </body>
 </html>

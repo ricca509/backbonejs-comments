@@ -152,6 +152,10 @@ app.CommentView = Backbone.View.extend({
 
 // Comments count view
 app.CommentsCountView = Backbone.View.extend({
+	tagName: 'div',
+
+	className: 'well',
+
 	initialize: function() {
 		this.collection.on('add', this.render, this);
 		this.collection.on('remove', this.render, this);
@@ -159,8 +163,20 @@ app.CommentsCountView = Backbone.View.extend({
 		this.render();
 	},
 
-	render: function() {
-		$('#commentsCount').html(this.collection.size());
+	template: _.template($('#comments-count-tmpl').html()),
+
+	render: function() {		
+		var attributes = {
+			commentsCount: this.collection.length
+		};
+
+		this.$el.html(this.template(attributes));
+
+		return this;
+
+		/*if (this.collection.length > 0) {
+			$('#lastComment').html(this.collection.at(this.collection.length - 1).get('creationDate') + "");
+		}*/
 	}
 });
 
@@ -169,6 +185,21 @@ app.CommentsCountView = Backbone.View.extend({
 app.AppView = Backbone.View.extend({
 	initialize: function() {
 		this.collection.on('add', this.addComment, this);
+
+		this.render();
+	},
+
+	render: function() {
+		app.commentsCountView = new app.CommentsCountView({
+			collection: app.comments
+		});
+
+		$('#commentsCountCountainer').append(app.commentsCountView.render().$el);
+
+		app.addCommentView = new app.AddCommentView({
+			collection: app.comments
+		});
+		app.addCommentView.setElement($('#add-comment'));
 	},
 
 	addComment: function(comment) {
@@ -180,22 +211,13 @@ app.AppView = Backbone.View.extend({
 	}
 });
 
-app.init = function() {
+app.init = (function() {
 	// Create the collection
-	app.comments = new app.Comments();
-
-	app.commentsCountView = new app.CommentsCountView({
-		collection: app.comments
-	});
-
-	app.addCommentView = new app.AddCommentView({
-		collection: app.comments
-	});
-	app.addCommentView.setElement($('#add-comment'));
+	app.comments = new app.Comments();	
 
 	app.appView = new app.AppView({
 		collection: app.comments
 	});	
 
-};
+}());
 

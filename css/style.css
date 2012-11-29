@@ -1,3 +1,15 @@
+body {
+	padding: 40px;
+}
+
 .comment {
 	padding: 5px; 	
+}
+
+#appendedInputButton {
+	width: 40%;
+}
+
+#commentsCountCountainer {
+	margin-top: 10px;
 }
