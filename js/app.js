@@ -1,23 +1,38 @@
 'use strict';
-// Namespace
+// Create a namespace for our app,
+// every object will be attached to this
+// to keep a well-defined scope
 var app = app || {};
 
+// The code of the enter key
+// on the keyboard, will be used to 
+// check if the user presses the enter key
 app.ENTER = 13;
 
 // Comment model
+// This model will hold data for
+// and custom methods for a single comment
 app.Comment = Backbone.Model.extend({
 	initialize: function() {
+		// Register to the 'add' event of the model.
+		// Every time a model is created, an 'add' event is fired
+		// automatically from the Backbone engine. We use this
+		// event to handle the new model by adding dynamically generated
+		// parameters (e.g. the creation date)
 		this.on('add', this.addHandler, this);
 	},	
 
+	// Every time a new model is created we add dafault values to some
+	// or every parameter. 
 	defaults: {
 		like: 0,
 		dislike: 0		
 	},
 
+	// The url to call for any interaction with the server
 	urlRoot: '/comments',
 
-	// I use this method to add
+	// We use this method to add
 	// dynamically generated values to the 
 	// newly added model
 	addHandler: function() {
@@ -26,6 +41,8 @@ app.Comment = Backbone.Model.extend({
 		});
 	},
 
+	// Move all the code that modifies the model into
+	// the model itself and call the code from the views
 	addLike: function() {
 		var likeN = this.get('like') - 0;
 		likeN++;
@@ -45,16 +62,20 @@ app.Comment = Backbone.Model.extend({
 });
 
 // Comments collection
+// This collection will hold the list of comments
 app.Comments = Backbone.Collection.extend({
 	model: app.Comment	
 });
 
 // Add comment view
+// Represents the view that makes it possible to add comments
+// We use an already existin
 app.AddCommentView = Backbone.View.extend({
 	initialize: function() {
-		//setTimeout(this.initForm, 200);		
+		
 	},
 
+	// Bind events to view methods
 	events : {
 		'click #btnAddComment': 'add',
 		'keypress #appendedInputButton': 'checkKey',
@@ -100,6 +121,7 @@ app.AddCommentView = Backbone.View.extend({
 });
 
 // Comment View
+// Represents a single comment
 app.CommentView = Backbone.View.extend({
 	tagName: 'div',
 
@@ -112,19 +134,22 @@ app.CommentView = Backbone.View.extend({
 		'click .close': 'remove'
 	},
 
+	// Cache the underscore template
 	template: _.template($('#comment-tmpl').html()),
 
 	initialize: function() {
+		// Register to any changes of the model
+		// and re-render itself every time automatically
 		this.model.on('change', this.render, this);
 	},
 
-	render: function() {
-		var that = this;				
-
+	render: function() {		
+		// Just change the element represented by this view			
 		// Call the template function by passing
 		// the json of the model
 		this.$el.html(this.template(this.model.toJSON()));
 
+		// Return the view object to make chainable call
 		return this;
 	},
 
@@ -132,7 +157,10 @@ app.CommentView = Backbone.View.extend({
 		
 	},
 
-	like: function() {	 
+	like: function() {	
+		// The view doesn't change anything in the model:
+		// it just call models' methods to make changes happen,
+		// the model is responsible to change its own attributes
 		this.model.addLike();		
 	},
 
@@ -140,6 +168,8 @@ app.CommentView = Backbone.View.extend({
 		this.model.addDislike();		
 	},
 
+	// Remove the element from the DOM and destroy the model 
+	// (it removes the model from the collection too)	
 	remove: function() {
 		var that = this;
 		this.model.destroy();
@@ -151,12 +181,15 @@ app.CommentView = Backbone.View.extend({
 });
 
 // Comments count view
+// Represent the comment counter
 app.CommentsCountView = Backbone.View.extend({
 	tagName: 'div',
 
 	className: 'well',
 
 	initialize: function() {
+		// We want to react at every change in the comments
+		// collection and re-render the view
 		this.collection.on('add', this.render, this);
 		this.collection.on('remove', this.render, this);
 		// Auto-rendered view
@@ -182,9 +215,11 @@ app.CommentsCountView = Backbone.View.extend({
 
 
 // App view 
+// We use the AppView to bootstrap the application
+// and render the views for the first time
 app.AppView = Backbone.View.extend({
 	initialize: function() {
-		this.collection.on('add', this.addComment, this);
+		this.collection.on('add', this.addOneComment, this);
 
 		this.render();
 	},
@@ -202,7 +237,7 @@ app.AppView = Backbone.View.extend({
 		app.addCommentView.setElement($('#add-comment'));
 	},
 
-	addComment: function(comment) {
+	addOneComment: function(comment) {
 		var commentV = new app.CommentView({
 			model: comment
 		});
@@ -211,7 +246,8 @@ app.AppView = Backbone.View.extend({
 	}
 });
 
-app.init = (function() {
+// Self invoking function that starts the app
+(function() {
 	// Create the collection
 	app.comments = new app.Comments();	
 
