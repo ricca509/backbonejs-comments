@@ -1,0 +1,9 @@
+{
+  "name": "backbone-comments",
+  "description": "An application that shows the power of backbone.js by creating a comment system",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x"
+  }
+}

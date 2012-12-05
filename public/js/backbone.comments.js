@@ -172,10 +172,14 @@ app.CommentView = Backbone.View.extend({
 		// it just call models' methods to make changes happen,
 		// the model is responsible to change its own attributes
 		this.model.addLike();		
+
+		this.model.save();
 	},
 
 	dislike: function() {
-		this.model.addDislike();		
+		this.model.addDislike();	
+
+		this.model.save();	
 	},
 
 	// Remove the element from the DOM and destroy the model 
