@@ -1,8 +1,10 @@
+// Returns all comments
 var getAll = function(req, res) {
 	res.type('application/json');
     res.send(200, "");
 };
 
+// Return a single comment
 var getOne = function(req, res) {
 	var resp = {
 		id : req.params.id
@@ -11,6 +13,7 @@ var getOne = function(req, res) {
     res.send(200, resp);
 };
 
+// Adds a single comment
 var add = function(req, res) {
 	var comment = req.body;
 	comment.id = parseInt(Math.random() * 100);
@@ -18,12 +21,14 @@ var add = function(req, res) {
     res.send(200, comment);
 };
 
+// Updates a single comment
 var update = function(req, res) {
 	var comment = req.body;	
 	res.type('application/json');
     res.send(200, comment);
 };
 
+// Deletes a single comment
 var del = function(req, res) {	
 	res.type('application/json');
     res.send(200, req.params.id);

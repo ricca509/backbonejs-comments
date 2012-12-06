@@ -10,13 +10,18 @@ app.configure(function(){
   app.use(express.bodyParser());
 });
 
-// REST API
+// REST API definition
+// GET to /comments returns all comments
 app.get('/comments', comments.getAll);
+// GET to /comments/:id returns a single comment
 app.get('/comments/:id', comments.getOne);
+// POST to /comments adds a comment
 app.post('/comments', comments.add);
+// PUT to /comments/:id modifies an existing comment
 app.put('/comments/:id', comments.update);
+// DELETE to /comments/:id deletes an existing comment
 app.delete('/comments/:id', comments.delete);
 
 app.listen(app.get('port'), function() {
-	console.log('Server started');
+	console.log('Server listening on port ' + app.get('port'));
 });
