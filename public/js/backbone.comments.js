@@ -30,13 +30,27 @@ app.Comment = Backbone.Model.extend({
 		// event to handle the new model by adding dynamically generated
 		// parameters (e.g. the creation date)
 		this.on('add', this.addHandler, this);
-	},	
+	},		
 
 	// Every time a new model is created we add dafault values to some
 	// or every parameter. 
 	defaults: {
 		like: 0,
 		dislike: 0		
+	},
+
+	// Validation method: every time a property is set on the model,
+	// the validation is performed
+	validate: function(attributes) {
+		var errors = [];
+
+		if (attributes.text === "") {
+			errors.push('Insert a text for the comment');
+		}
+
+		if (errors.length !== 0) {
+			return errors;
+		}
 	},
 
 	// The url to call for any interaction with the server
@@ -208,6 +222,7 @@ app.CommentsCountView = Backbone.View.extend({
 		// collection and re-render the view
 		this.collection.on('add', this.render, this);
 		this.collection.on('remove', this.render, this);
+		this.collection.on('reset', this.render, this);
 		// Auto-rendered view
 		this.render();
 	},
