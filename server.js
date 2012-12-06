@@ -4,11 +4,13 @@ var express = require('express'),
 
 var app = express();
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);  
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.bodyParser());
-});
+// Set server port
+app.set('port', process.env.PORT || 3000);  
+// Set folder to serve static files
+app.use('/pub', express.static(path.join(__dirname, 'public')));
+// Log routes
+app.use(express.logger());
+app.use(express.bodyParser());
 
 // REST API definition
 // GET to /comments returns all comments
