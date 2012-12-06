@@ -7,7 +7,7 @@ var app = express();
 // Set server port
 app.set('port', process.env.PORT || 3000);  
 // Set folder to serve static files
-app.use('/pub', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 // Log routes
 app.use(express.logger());
 app.use(express.bodyParser());
