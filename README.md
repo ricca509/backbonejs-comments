@@ -1,6 +1,25 @@
 #Backbone Comments
 
+** What **
+
 A project that shows the power of backbone.js by creating a fully featured comments system.
+
+** How **
+
+**Resources used**
+
+Client-side
+
+* [Backbone.js](http://backbonejs.org/)
+* [jQuery](http://jquery.com/)
+* [Bootstrap](http://twitter.github.com/bootstrap/)
+
+Server-side:
+
+* [node.js](http://nodejs.org/)
+* [express](http://expressjs.com/)
+* [mongoose](http://mongoosejs.com/)
+* [mongoDB](http://www.mongodb.org/)
 
 If you have any questions or feedback, feel free to contact me using [@CoppolaRiccardo](https://twitter.com/CoppolaRiccardo) on Twitter.
 

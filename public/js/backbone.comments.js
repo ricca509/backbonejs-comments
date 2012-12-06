@@ -74,7 +74,9 @@ app.Comment = Backbone.Model.extend({
 // Comments collection
 // This collection will hold the list of comments
 app.Comments = Backbone.Collection.extend({
-	model: app.Comment	
+	model: app.Comment,
+	// The url to call for any interaction with the server
+	url: '/comments'
 });
 
 // Add comment view
@@ -234,6 +236,7 @@ app.CommentsCountView = Backbone.View.extend({
 app.AppView = Backbone.View.extend({
 	initialize: function() {
 		this.collection.on('add', this.addOneComment, this);
+		this.collection.on('reset', this.addAllComments, this);
 
 		this.render();
 	},
@@ -249,6 +252,11 @@ app.AppView = Backbone.View.extend({
 			collection: app.comments
 		});
 		app.addCommentView.setElement($('#add-comment'));
+	},
+
+	addAllComments: function() {
+		var that = this;
+		this.collection.each(that.addOneComment);
 	},
 
 	addOneComment: function(comment) {
@@ -268,6 +276,8 @@ app.AppView = Backbone.View.extend({
 	app.appView = new app.AppView({
 		collection: app.comments
 	});	
+
+	app.comments.fetch();
 
 }());
 
