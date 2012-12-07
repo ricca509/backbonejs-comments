@@ -2,8 +2,16 @@ body {
 	padding: 40px;
 }
 
+hr {
+	margin: 10px 0;
+}
+
 .comment {
-	padding: 5px; 	
+	padding: 5px 0; 	
+}
+
+.comment-date {
+	font-size: 11px;
 }
 
 #appendedInputButton {

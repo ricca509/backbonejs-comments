@@ -73,13 +73,13 @@
       <div class="media">
         <button class="close">&times;</button>
         <a class="pull-left" href="#">
-          <img class="media-object" src="http://placehold.it/64x64">
+          <img class="media-object" src="http://placehold.it/50x50">
         </a>
         <div class="media-body">
+          <a href="#"><strong>Guest</strong></a>
           <%= text %>          
           <br>
-          <span class="muted">on: <%= creationDate %></span>
-          <br>          
+          <span class="muted comment-date">on: <%= creationDate %></span>                
           <button class="btn-link like"><i class="icon-thumbs-up"></i></button> <span class="badge badge-success"><%= like %></span>
           <button class="btn-link dislike"><i class="icon-thumbs-down"></i></button> <span class="badge badge-important"><%= dislike %></span>
         </div>
