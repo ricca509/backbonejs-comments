@@ -1,10 +1,10 @@
 #Backbone Comments
 
-** What **
+**What**
 
 A project that shows the power of backbone.js by creating a fully featured comments system.
 
-** How **
+**How**
 
 **Resources used**
 
