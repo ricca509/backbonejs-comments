@@ -32,6 +32,8 @@ app.Comment = Backbone.Model.extend({
 		this.on('add', this.addHandler, this);
 	},		
 
+	idAttribute: '_id',
+
 	// Every time a new model is created we add dafault values to some
 	// or every parameter. 
 	defaults: {
@@ -60,9 +62,9 @@ app.Comment = Backbone.Model.extend({
 	// dynamically generated values to the 
 	// newly added model
 	addHandler: function() {
-		this.set({
+		/*this.set({
 			creationDate: new Date()
-		});
+		});*/
 	},
 
 	// Move all the code that modifies the model into

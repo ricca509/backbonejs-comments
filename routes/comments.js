@@ -11,7 +11,7 @@ var getAll = function(req, res) {
 		console.log('comments')
 		res.type('application/json');
 	    res.send(200, comments);
-	})
+	});
 	
 };
 
@@ -35,7 +35,7 @@ var add = function(req, res) {
   	comment.save(function (err, comm) {  		
 		if (err) {
 			res.type('text/plain');
-			res.send(500);
+			res.send(500, "Error saving the comment");
 		}
 
 		res.type('application/json');
@@ -45,9 +45,25 @@ var add = function(req, res) {
 
 // Updates a single comment
 var update = function(req, res) {
-	var comment = req.body;	
-	res.type('application/json');
-    res.send(200, comment);
+	CommentsModel.Comment.findById(req.params.id, function (err, comment) {
+		if (err) {
+			console.log('Error searching the comment...');
+		}
+
+		comment.like = req.body.like;
+		comment.dislike = req.body.dislike;
+
+		comment.save(function (err, comm) {  		
+			if (err) {
+				res.type('text/plain');
+				res.send(500, "Error saving the comment");
+			}
+
+			res.type('application/json');
+			res.send(200, comm);
+		});				
+	});
+
 };
 
 // Deletes a single comment
