@@ -17,11 +17,14 @@ var getAll = function(req, res) {
 
 // Return a single comment
 var getOne = function(req, res) {
-	var resp = {
-		id : req.params.id
-	};
-	res.type('application/json');
-    res.send(200, resp);
+	CommentsModel.Comment.findById(req.params.id, function (err, comment) {
+		if (err) {
+			console.log('Error searching the comment...');
+		}
+	
+		res.type('application/json');
+		res.send(200, comment);
+	});					
 };
 
 // Adds a comment
@@ -71,8 +74,16 @@ var update = function(req, res) {
 
 // Deletes a single comment
 var del = function(req, res) {	
-	res.type('application/json');
-    res.send(200, req.params.id);
+	CommentsModel.Comment.findById(req.params.id, function(err, comment) {
+		comment.remove(function(err, comm) {
+			if (err) {
+				res.type('text/plain');
+				res.send(500, "Error removing the comment");
+			}
+			res.type('application/json');
+			res.send(200, "");
+		});
+	});	
 };
 
 module.exports = {
