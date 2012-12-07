@@ -6,6 +6,6 @@
   "private": true,
   "dependencies": {
     "express": "3.x",
-    "mongoose": "3.4.0"
+    "mongoose": "3.4.0"    
   }
 }

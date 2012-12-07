@@ -7,8 +7,7 @@ var getAll = function(req, res) {
 		if (err) {
 			console.log('error');
 		}
-		console.log(comments);
-		console.log('comments')
+					
 		res.type('application/json');
 	    res.send(200, comments);
 	});
