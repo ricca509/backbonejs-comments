@@ -62,9 +62,12 @@ app.Comment = Backbone.Model.extend({
 	// dynamically generated values to the 
 	// newly added model
 	addHandler: function() {
-		/*this.set({
-			creationDate: new Date()
-		});*/
+		// Example: you could set a date 
+		// for every new model (we'll do this server-side obviously)
+		//this.set({
+		//	creationDate: new Date()
+		//});
+		//
 	},
 
 	// Move all the code that modifies the model into
@@ -239,10 +242,6 @@ app.CommentsCountView = Backbone.View.extend({
 		this.$el.html(this.template(attributes));
 
 		return this;
-
-		/*if (this.collection.length > 0) {
-			$('#lastComment').html(this.collection.at(this.collection.length - 1).get('creationDate') + "");
-		}*/
 	}
 });
 
@@ -252,7 +251,9 @@ app.CommentsCountView = Backbone.View.extend({
 // and render the views for the first time
 app.AppView = Backbone.View.extend({
 	initialize: function() {
+		// At every 'add' event of the collection, call the addOneComment method
 		this.collection.on('add', this.addOneComment, this);
+		// At every 'reset' event of the collection, call the addAllComments method
 		this.collection.on('reset', this.addAllComments, this);
 
 		this.render();
@@ -294,6 +295,7 @@ app.AppView = Backbone.View.extend({
 		collection: app.comments
 	});	
 
+	// Fetch data from the server
 	app.comments.fetch();
 
 }());

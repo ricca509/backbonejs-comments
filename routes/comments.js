@@ -50,9 +50,11 @@ var update = function(req, res) {
 			console.log('Error searching the comment...');
 		}
 
+		// Update the comment
 		comment.like = req.body.like;
 		comment.dislike = req.body.dislike;
 
+		// Save the modified comment
 		comment.save(function (err, comm) {  		
 			if (err) {
 				res.type('text/plain');
