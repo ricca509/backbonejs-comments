@@ -7,7 +7,7 @@ var CommentSchema = new mongoose.Schema({
 	text     		: String,
 	like      		: Number,
 	dislike      	: Number,
-	creationDate    : {type: Date, default: Date.now}
+	creationDate    : Date
 });
 
 var Comment = mongoose.model('Comment', CommentSchema);

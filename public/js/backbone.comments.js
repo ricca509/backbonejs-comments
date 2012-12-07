@@ -63,11 +63,12 @@ app.Comment = Backbone.Model.extend({
 	// newly added model
 	addHandler: function() {
 		// Example: you could set a date 
-		// for every new model (we'll do this server-side obviously)
-		//this.set({
-		//	creationDate: new Date()
-		//});
-		//
+		// for every new model
+		if (this.isNew()) {
+			this.set({
+				creationDate: new Date()
+			});
+		}			
 	},
 
 	// Move all the code that modifies the model into
@@ -143,9 +144,7 @@ app.AddCommentView = Backbone.View.extend({
 			text: this.$('#appendedInputButton').val()			
 		});
 		
-		// Call the server and add to collection
-		// ATM there's no server implementation,
-		// this is only for demonstration
+		// Call the server and add to collection		
 		this.collection.create(comment);
 		this.initForm();
 	}

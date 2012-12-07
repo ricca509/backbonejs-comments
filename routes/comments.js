@@ -29,7 +29,8 @@ var add = function(req, res) {
   	var comment = new CommentsModel.Comment({
   		text: req.body.text,
   		like: 0,
-  		dislike: 0	  		
+  		dislike: 0,
+  		creationDate: new Date()
   	});
 
   	comment.save(function (err, comm) {  		

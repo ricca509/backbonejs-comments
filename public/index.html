@@ -76,8 +76,9 @@
           <img class="media-object" src="http://placehold.it/64x64">
         </a>
         <div class="media-body">
-          <h4 class="media-heading"><%= text %></h4>
-          on: <%= creationDate %>
+          <%= text %>          
+          <br>
+          <span class="muted">on: <%= creationDate %></span>
           <br>          
           <button class="btn-link like"><i class="icon-thumbs-up"></i></button> <span class="badge badge-success"><%= like %></span>
           <button class="btn-link dislike"><i class="icon-thumbs-down"></i></button> <span class="badge badge-important"><%= dislike %></span>
