@@ -1,6 +1,6 @@
 var express = require('express'),
 	path = require('path'),
-	comments = require('./routes/comments');
+	comments = require('./controllers/comments');
 
 var app = express();
 
@@ -12,7 +12,7 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(express.logger());
 app.use(express.bodyParser());
 
-// REST API definition
+// REST API routes definition
 // GET to /comments returns all comments
 app.get('/comments', comments.getAll);
 // GET to /comments/:id returns a single comment
