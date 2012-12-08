@@ -79,7 +79,7 @@
           <a href="#"><strong>Guest</strong></a>
           <%= text %>          
           <br>
-          <span class="muted comment-date">on: <%= dateFormat(creationDate, "dddd, mmmm dS, yyyy, h:MM:ss TT") %></span>                
+          <span class="muted comment-date"><%= dateFormat(creationDate, "dddd, mmmm dS, yyyy, h:MM:ss TT") %></span>                
           <button class="btn-link like"><i class="icon-thumbs-up"></i></button> <span class="badge badge-success"><%= like %></span>
           <button class="btn-link dislike"><i class="icon-thumbs-down"></i></button> <span class="badge badge-important"><%= dislike %></span>
         </div>
