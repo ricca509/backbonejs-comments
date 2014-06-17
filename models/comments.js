@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');  
+var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/backbone-comments');	
+mongoose.connect('mongodb://comments:comments@ds029207.mongolab.com:29207/comments');	
 
 // Comments collection
 var CommentSchema = new mongoose.Schema({
