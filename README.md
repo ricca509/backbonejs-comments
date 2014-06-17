@@ -4,7 +4,9 @@
 
 A project that shows the power of backbone.js by creating a fully featured comments system.
 
-**How**
+**Demo**
+
+See it running here: [backbonejs-comments.herokuapp.com](http://backbonejs-comments.herokuapp.com/)
 
 **Resources used**
 
